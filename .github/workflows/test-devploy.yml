@@ -1,0 +1,26 @@
+name: Test GitHub Actions
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name:  Paso 1
+      run: echo "Workflow detecto un push en la rama main"
+
+    - name: Mostrar fecha y hora
+      run: date
+
+    - name: Verificar versión de Node
+      run: node -v || echo "Node no está instalado en este runner"
+
+    - name: Verificar versión de Python
+      run: python3 --version || echo "Python no este instalado"
