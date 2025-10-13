@@ -10,6 +10,7 @@ let productos = [
   { id: 2, nombre: 'Mouse', precio: 80.5, stock: 50 },
   { id: 3, nombre: 'Teclado', precio: 120.0, stock: 30 },
   { id: 4, nombre: 'Microfono', precio: 120.0, stock: 30 },
+  { id: 5, nombre: 'Monitor', precio: 1200.0, stock: 20 },
 ];
 
 const typeDefs = `
