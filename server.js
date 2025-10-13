@@ -3,6 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import bodyParser from 'body-parser';
 import cors from 'cors';
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'; // 👈 añade esto
 
 let productos = [
   { id: 1, nombre: 'Laptop', precio: 3500.0, stock: 10 },
@@ -54,19 +55,20 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
+    plugins: [ApolloServerPluginLandingPageLocalDefault()],
   });
 
   await server.start();
 
   app.use(
-    '/graphql',
-    cors(),
-    bodyParser.json(),
+    '/graphql', 
+    cors(), 
+    bodyParser.json(), 
     expressMiddleware(server)
   );
 
   app.get('/', (req, res) => {
-    res.send('🚀 Hola! Esta es mi app Node con Apollo Server 4 en el puerto 6666');
+    res.send('🚀 Hola! Esta es mi app Node con Apollo Server 4');
   });
 
   app.listen(PORT, '0.0.0.0', () => {
