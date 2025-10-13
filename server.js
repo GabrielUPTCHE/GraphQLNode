@@ -69,7 +69,7 @@ async function startServer() {
     res.send('🚀 Hola! Esta es mi app Node con Apollo Server 4 en el puerto 6666');
   });
 
-  app.listen(PORT, () => {
+  app.listen(PORT, '0.0.0.0', () => {
     console.log(`El servidor escucha en http://0.0.0.0:${PORT}`);
     console.log(`Server GraphQL listo en http://0.0.0.0:${PORT}/graphql`);
   });
