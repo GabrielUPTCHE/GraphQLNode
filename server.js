@@ -9,6 +9,7 @@ let productos = [
   { id: 1, nombre: 'Laptop', precio: 3500.0, stock: 10 },
   { id: 2, nombre: 'Mouse', precio: 80.5, stock: 50 },
   { id: 3, nombre: 'Teclado', precio: 120.0, stock: 30 },
+  { id: 4, nombre: 'Microfono', precio: 120.0, stock: 30 },
 ];
 
 const typeDefs = `
