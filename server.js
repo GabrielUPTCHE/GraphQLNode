@@ -3,7 +3,7 @@ import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default'; // 👈 añade esto
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 
 let productos = [
   { id: 1, nombre: 'Laptop', precio: 3500.0, stock: 10 },
@@ -55,15 +55,18 @@ async function startServer() {
   const server = new ApolloServer({
     typeDefs,
     resolvers,
-    plugins: [ApolloServerPluginLandingPageLocalDefault()],
+    introspection: true,
+    plugins: [
+      ApolloServerPluginLandingPageLocalDefault({ embed: true }) 
+    ],
   });
 
   await server.start();
 
   app.use(
-    '/graphql', 
-    cors(), 
-    bodyParser.json(), 
+    '/graphql',
+    cors(),
+    bodyParser.json(),
     expressMiddleware(server)
   );
 
@@ -73,7 +76,7 @@ async function startServer() {
 
   app.listen(PORT, '0.0.0.0', () => {
     console.log(`El servidor escucha en http://0.0.0.0:${PORT}`);
-    console.log(`Server GraphQL listo en http://0.0.0.0:${PORT}/graphql`);
+    console.log(`GraphQL listo en http://0.0.0.0:${PORT}/graphql`);
   });
 }
 
